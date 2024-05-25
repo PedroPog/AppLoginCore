@@ -1,0 +1,35 @@
+﻿@model AppLoginCore_M.Models.Livro
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h1>Cadastrar</h1>
+
+<h4>Livro</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CadastrarLivro" asp-controller="Livro" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nomeLivro" class="control-label"></label>
+                <input asp-for="nomeLivro" class="form-control" />
+                <span asp-validation-for="nomeLivro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="file" name="file" id="file"/><br />
+                <span asp-validation-for="imagemLivro" class="text-danger"></span>
+            </div>
+            @ViewBag.msg
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-asp-controller="Home" asp-action="Index">Back to List</a>
+</div>
