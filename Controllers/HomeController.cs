@@ -1,4 +1,4 @@
-using AppLoginCore_M.CarrinhoCompra;
+using AppLoginCore_M.Cookie;
 using AppLoginCore_M.Libraries.Filtro;
 using AppLoginCore_M.Libraries.Login;
 using AppLoginCore_M.Models;
@@ -55,17 +55,18 @@ namespace AppLoginCore_M.Controllers
                     nomeLivro = produto.nomeLivro
                 };
                 _carrinho.Cadastrar(item);
-                return RedirectToAction(nameof(Carrinho));
+                return RedirectToAction(nameof(Carrinhos));
             }
         }
-        public IActionResult Carrinho()
+        public IActionResult Carrinhos()
         {
-            return View(_carrinho.Consultar());
+            var teste = _carrinho.Consultar();
+            return View(teste);
         }
         public IActionResult RemoverItem(int id)
         {
             _carrinho.Remover(new Livro() { idLivro = id });
-            return RedirectToAction(nameof(Carrinho));
+            return RedirectToAction(nameof(Carrinhos));
         }
 
         DateTime data;
@@ -153,10 +154,14 @@ namespace AppLoginCore_M.Controllers
 
         public IActionResult PainelCliente()
         {
-            ViewBag.Nome = _loginCliente.GetCliente().Nome;
-            ViewBag.CPF = _loginCliente.GetCliente().CPF;
-            ViewBag.Email = _loginCliente.GetCliente().Email;
-            return View();
+            if (_loginCliente.GetCliente().Nome != null)
+            {
+                ViewBag.Nome = _loginCliente.GetCliente().Nome;
+                ViewBag.CPF = _loginCliente.GetCliente().CPF;
+                ViewBag.Email = _loginCliente.GetCliente().Email;
+                return View();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         [ClienteAutorizacao]

@@ -11,11 +11,13 @@ namespace AppLoginCore_M.Areas.Colaborador.Controllers
     {
         private IColaboradorRepository _colaboradorRepository;
         private LoginColaborador _loginColaborador;
+        private ILivroRepository _livroRepository; 
 
-        public HomeController(IColaboradorRepository colaboradorRepository, LoginColaborador loginColaborador)
+        public HomeController(IColaboradorRepository colaboradorRepository, LoginColaborador loginColaborador, ILivroRepository livroRepository)
         {
             _colaboradorRepository = colaboradorRepository;
             _loginColaborador = loginColaborador;
+            _livroRepository = livroRepository;
         }
 
         public IActionResult Index()
@@ -86,21 +88,11 @@ namespace AppLoginCore_M.Areas.Colaborador.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        /*public IActionResult PainelGerente()
+        public IActionResult Livros()
         {
-            ViewBag.Nome = _loginColaborador.GetColaborador().Nome;
-            ViewBag.Tipo = _loginColaborador.GetColaborador().Tipo;
-            ViewBag.Email = _loginColaborador.GetColaborador().Email;
-            return View();
+            return View(_livroRepository.ObterTodosLivros());
         }
 
-        public IActionResult PainelComum()
-        {
-            ViewBag.Nome = _loginColaborador.GetColaborador().Nome;
-            ViewBag.Tipo = _loginColaborador.GetColaborador().Tipo;
-            ViewBag.Email = _loginColaborador.GetColaborador().Email;
-            return View();
-        }*/
         [ColaboradorAutorizacaoAttribute]
         public IActionResult Painel()
         {

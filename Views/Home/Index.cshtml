@@ -24,17 +24,25 @@
                                 <h4 class="card-title">
                                     <a href="@item.imagemLivro">@item.nomeLivro</a>
                                 </h4>
-                                <spam>Código: @item.idLivro</spam>
+                                <spam class="visually-hidden">Código: @item.idLivro</spam>
                             </div>
                             <div class="card-footer space-between-flex" style="width:90%">
-                                <div>
-                                    @using (Html.BeginForm("AdicionarItem", "Home", FormMethod.Post))
-                                    {
-                                        <input type="hidden" name="id" value="@item.idLivro" />
-                                        <input type="hidden" name="quantidade" value="1" />
-                                        <button type="submit" class="btn btn-default btn-acao-primario">Adicionar</button>
-                                    }
-                                </div>
+                                @if (item.quantidade > 0){
+                                    <div>
+                                        @using (Html.BeginForm("AdicionarItem", "Home", FormMethod.Post))
+                                        {
+                                            <input type="hidden" name="id" value="@item.idLivro" />
+                                            <input type="hidden" name="quantidade" value="1" />
+                                            <button type="submit" class="btn btn-default btn-acao-primario">Adicionar</button>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <button disabled type="submit" class="btn btn-default btn-acao-primario">Esgotado</button>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>

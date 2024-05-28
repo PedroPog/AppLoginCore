@@ -21,20 +21,17 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Cliente</a>
-                        </li>
+                        </li>-->
                     </ul>
                     <li class="nav-item dropdown" style="list-style:none">
                         @if (_LoginCliente.GetCliente() != null)
                         {
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">@_LoginCliente.GetCliente().Nome</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Minhas Compras</a></li>
-                                <li><a class="dropdown-item" href="#">Meus Perfil</a></li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Carrinho">Minhas Compras</a></li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="PainelCliente">Meus Perfil</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/Home/LogoutCliente">Sair</a></li>
                             </ul>
@@ -54,9 +51,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted fixed-bottom">
         <div class="container">
-            &copy; 2024 - AppLoginAspCore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - AppLoginAspCore - <a asp-area="Colaborador" asp-controller="Home" asp-action="Login">Area Adm</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -21,6 +21,11 @@
                 <input type="file" name="file" id="file"/><br />
                 <span asp-validation-for="imagemLivro" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="quantidade" class="control-label"></label>
+                <input asp-for="quantidade" class="control-label" />
+                <span asp-validation-for="quantidade" class="text-danger"></span>
+            </div>
             @ViewBag.msg
             <br/>
             <div class="form-group">
@@ -31,5 +36,5 @@
 </div>
 
 <div>
-    <a asp-asp-controller="Home" asp-action="Index">Back to List</a>
+    <a asp-controller="Colaborador" asp-controller="Home" asp-action="Index">Back to List</a>
 </div>

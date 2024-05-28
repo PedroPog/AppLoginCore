@@ -31,7 +31,8 @@ insert into Colaborador values
 create table tbLivro(
 	idLivro int primary key auto_increment,
     nomeLivro varchar(50),
-    imagemLivro varchar(255)
+    imagemLivro varchar(255),
+    quatidade int(0)
 );
 
 create table tbEmprestimo(
@@ -44,5 +45,6 @@ create table tbEmprestimo(
 create table itemsEmp(
 	idItem int primary key auto_increment,
     idEmp int references tbEmprestimo(idEmp),
-    idLivro int references tbLivro(idLivro)
+    idLivro int references tbLivro(idLivro),
+    quantidade int 
 );

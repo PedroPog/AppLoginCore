@@ -1,11 +1,14 @@
 ﻿using AppLoginCore_M.GerenciaArquivos;
+using AppLoginCore_M.Libraries.Filtro;
 using AppLoginCore_M.Models;
 using AppLoginCore_M.Repository;
 using AppLoginCore_M.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AppLoginCore_M.Controllers
+namespace AppLoginCore_M.Areas.Colaborador.Controllers
 {
+    [Area("Colaborador")]
+    [ColaboradorAutorizacao]
     public class LivroController : Controller
     {
         private ILivroRepository _liivroRepository;
@@ -28,7 +31,7 @@ namespace AppLoginCore_M.Controllers
             _liivroRepository.Cadastrar(livro);
 
             ViewBag.msg = "Cadastro realizado";
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

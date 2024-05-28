@@ -1,3 +1,4 @@
+using AppLoginCore_M.Cookie;
 using AppLoginCore_M.GerenciaArquivos;
 using AppLoginCore_M.Libraries.Login;
 using AppLoginCore_M.Libraries.Middleware;
@@ -27,7 +28,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(60);
+    options.IdleTimeout = TimeSpan.FromSeconds(900);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -39,8 +40,8 @@ builder.Services.AddMemoryCache();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<GerenciadorArquivo>();
-builder.Services.AddScoped<AppLoginCore_M.Cookie.Cookie>();
-builder.Services.AddScoped<AppLoginCore_M.CarrinhoCompra.Carrinho>();
+builder.Services.AddScoped<Cookie>();
+builder.Services.AddScoped<Carrinho>();
 builder.Services.AddScoped<AppLoginCore_M.Libraries.Sessao.Sessao>();
 builder.Services.AddScoped<LoginCliente>();
 builder.Services.AddScoped<LoginColaborador>();
@@ -58,7 +59,7 @@ app.UseStaticFiles();
 app.UseDefaultFiles();
 app.UseCookiePolicy();
 app.UseSession();
-app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
+//app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
 app.UseRouting();
 
 app.UseAuthorization();
